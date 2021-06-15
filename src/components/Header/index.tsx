@@ -8,11 +8,11 @@ export function Header() {
       <div className={styles.headerContent}>
         <img src="/images/logo.svg" alt="LOGO" />
         <nav>
-          <Link href={`./login`}>
+          <Link href={'./login'}>
             Login
           </Link>
           <span>/</span>
-          <Link href="">
+          <Link href={'./registro'}>
             Criar Conta
           </Link>
         </nav>

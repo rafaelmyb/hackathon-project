@@ -3,15 +3,15 @@ import Link from 'next/link';
 
 import styles from './styles.module.scss';
 
-export default function Login() {
+export default function Registro() {
   return(
     <>
       <Head>
-        <title>Login</title>
+        <title>Criar conta</title>
       </Head>
       <main className={styles.container}>
         <div className={styles.form}>
-          <h3>Bem vindo(a) de volta, faça Login novamente</h3>
+          <h3>Bem vindo(a), para continuar, crie sua conta</h3>
 
           <input 
             type="text" 
@@ -23,11 +23,21 @@ export default function Login() {
             placeholder="Senha"
           />
 
+          <input
+            type="text"
+            placeholder="Data de nascimento"
+          />
+
+          <input
+            type="email" 
+            placeholder="Email"
+          />
+
           <button type="submit">
-            Fazer login
+            Criar minha conta
           </button>
 
-          <p>Não é membro? crie sua conta <Link href={'./registro'}>aqui</Link></p>
+          <p>Já é membro? Faça o login <Link href={'./login'}>aqui</Link></p>
           
           <span><hr />ou<hr /></span>
 
