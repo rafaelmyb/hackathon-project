@@ -1,0 +1,131 @@
+.container {
+  max-width: 1200px;
+  margin: 0.5rem auto 0;
+  padding: 0 2rem;
+  height: calc(100vh - 8.5rem);
+
+  display: flex;
+  justify-content: center;  
+}
+
+.form {
+  max-width: 466px;
+  text-align: center;
+
+  h3 {
+    font-size: 1.250rem;
+    font-weight: bold;
+    line-height: 1.875rem;
+  }
+
+  input {
+    width: 380px;
+    height: 44px;
+    margin-top: 3.125rem;
+    padding: 0.1rem 0 0 0.750rem;
+    font-size: 1.125rem;
+    line-height: 1.6875rem;
+    
+    border-radius: 4px;
+    border: none;
+    
+    &::placeholder {
+      color: var(--placeholder);
+      font-weight: 400;
+    }
+
+    &:focus::placeholder {
+      filter: brightness(1.5);
+    }
+
+    &:focus {
+      outline: 0;
+    }
+
+    & + input {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  button {
+    width: 380px;
+    height: 44px;
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.6875rem;
+
+    border-radius: 4px;
+    border: none;
+
+    transition: filter 0.2s;
+
+    &[type="submit"] {
+      background: var(--red);
+      color: var(--white);   
+    } 
+
+    &:hover {
+      filter: brightness(0.8);
+    }
+  }
+
+  p {
+    width: 466px;
+    margin-top: 2rem;
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.6875rem;
+
+    a {
+      color: var(--red);
+
+      transition: filter 0.2s;
+
+      &:hover {
+        filter: brightness(0.85);
+      }
+    }
+  }
+
+  span {
+    max-width: 380px;
+    margin: 2.125rem auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    hr {
+      width: 164px;
+    }
+  }
+
+  .google {
+    color: var(--red);
+    margin: 0 auto 1.250rem auto;
+      
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      margin-right: 0.750rem;
+    }
+  }
+
+  .facebook {
+    background: var(--blue);
+    color: var(--white);
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      margin-right: 0.750rem;
+    }
+  }
+}

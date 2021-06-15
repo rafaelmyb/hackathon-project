@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import styles from './styles.module.scss';
 
 export function Header() {
@@ -6,9 +8,13 @@ export function Header() {
       <div className={styles.headerContent}>
         <img src="/images/logo.svg" alt="LOGO" />
         <nav>
-          <a href="">Login</a>
+          <Link href={`./login`}>
+            Login
+          </Link>
           <span>/</span>
-          <a href="">Criar Conta</a>
+          <Link href="">
+            Criar Conta
+          </Link>
         </nav>
       </div>
     </header>
