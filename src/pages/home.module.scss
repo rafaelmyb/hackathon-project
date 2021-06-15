@@ -1,0 +1,81 @@
+.contentContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: calc(100vh - 8.5rem);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .card_locked {
+    margin-top: -8.5rem;
+  }
+}
+
+.hero {
+  max-width: 380px;
+  height: 548px;
+  margin-top: -5.5rem;
+
+  h1 {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 1.125rem;
+    font-weight: normal;
+    margin-bottom: 4rem;
+  }
+
+  button {
+    width: 380px;
+    height: 44px;
+    font-size: 1.125rem;
+    font-weight: 500;
+    border-radius: 4px;
+    border: none;
+
+    & + button {
+      margin-top: 0.750rem;
+      margin-bottom: 5.9375rem;
+      background: var(--red);
+      color: var(--white);
+    }
+  }
+
+  .input_submit {
+    display: flex;
+    align-items: center;
+    margin-top: 0.750rem;
+
+    input {
+      width: 336px;
+      height: 44px;
+      
+      border-radius: 4px 0 0 4px;
+      border: none;
+      
+      &::placeholder {
+        color: var(--placeholder);
+        font-size: 1.125rem;
+        font-weight: 400;
+
+        position: relative;
+        top: 0.100rem;
+        left: 0.750rem;
+      }
+    }
+  
+    button[type="submit"] {
+      width: 44px;
+      border-radius: 0 4px 4px 0;
+      background: var(--red);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
