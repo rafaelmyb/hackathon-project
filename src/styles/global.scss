@@ -10,8 +10,8 @@
   --red: #F51E38;
   --blue: #395896;
 
-  --background: #222222;
-  --placeholder: #595959;
+  --gray-900: #222222;
+  --gray-300: #595959;
 }
 
 @media (max-width: 1080px) {
@@ -27,7 +27,7 @@
 }
 
 body {
-  background: var(--background);
+  background: var(--gray-900);
   color: var(--white);
 }
 

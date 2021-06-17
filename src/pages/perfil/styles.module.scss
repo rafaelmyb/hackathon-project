@@ -1,0 +1,254 @@
+.container {
+  max-width: 1200px;
+  height: 675px;
+  margin: 1rem auto 0;
+  padding: 0 2rem;
+}
+
+.primaryContentContainer {
+  display: flex;
+  justify-content: space-between;
+
+  height: 300px;
+}
+
+.profile {
+  h1 {
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+    line-height: 3rem;
+  }
+
+  p {
+    line-height: 1.875rem;
+    font-size: 1.250rem;
+
+    & + p {
+      margin-top: 0.5rem;
+    }
+  }
+
+  button {
+    width: 380px;
+    height: 44px;
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.6875rem;
+
+    background: var(--red);
+    color: var(--white);
+    border-radius: 4px;
+    border: none;
+    margin-top: 2.635rem;
+
+    transition: filter 0.2s;
+
+    & + button {
+      background: var(--white);
+      color: var(--red);
+      margin-top: 0.5rem;
+    }
+
+    &:hover {
+      filter: brightness(0.8);
+    }
+  }
+}
+
+.cardsContainer {
+  width: 547px;
+}
+
+.cardsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h1 {
+    width: 150px;
+    font-size: 2rem;
+    line-height: 3rem;
+  }
+
+  button {
+    width: 192px;
+    height: 44px;
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.6875rem;
+
+    background: var(--red);
+    color: var(--white);
+    border-radius: 4px;
+    border: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: filter 0.2s;
+
+    &:hover {
+      filter: brightness(0.8);
+    }
+
+    img {
+      margin-right: 0.625rem;
+    }
+  }
+}
+
+.cardList {
+  height: 240px;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    background-color: var(--gray-900);
+    width: 18px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--gray-300);
+  }
+}
+
+.card {
+  display: flex;
+  margin-top: 1.125rem;
+
+  &.card {
+    margin-bottom: 2.250rem;
+  }
+
+  p {
+    font-size: 1.250rem;
+    line-height: 1.875rem;
+    font-weight: bold;
+
+    height: 1.5rem;
+    position: relative;
+    top: 0.20rem;
+    left: 1.75rem;
+
+    span {
+      font-size: 1.125rem;
+      line-height: 1.6875rem;
+      font-weight: 500;
+
+      position: relative;
+      top: 0.7rem;
+    }
+  }
+}
+
+.incidentsHeaderContainer {
+  margin: 5rem 0 0 0;
+  padding: 0 0.875rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h1 {
+    font-size: 2rem;
+    line-height: 3rem;
+  }
+
+  button {
+    width: 216px;
+    height: 44px;
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.6875rem;
+
+    background: var(--red);
+    color: var(--white);
+    border-radius: 4px;
+    border: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: filter 0.2s;
+
+    &:hover {
+      filter: brightness(0.8);
+    }
+
+    img {
+      margin-right: 0.625rem;
+    }
+  }
+}
+
+.incidentContainer {
+  max-height: 335px;
+  margin-top: 2rem;
+
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.incidentHeader {
+  background: #2B2B2B;
+  border-radius: 12px 12px 0 0;
+  height: 64px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .incidentHeaderContent {
+    width: 964px;
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+
+    font-weight: bold;
+
+    h3 {
+    font-size: 1.5rem;
+    }
+
+    span {
+      font-size: 1.125rem;
+      margin-left: 2rem;
+    }
+  }
+
+  .incidentUpdateDelete {
+    width: 60px;
+    margin-right: 1.875rem;
+
+    display: flex;
+    justify-content: space-between;
+
+    cursor: pointer;
+  }
+}
+
+.incidentComment {
+  height: 131px;
+  background: #333333;
+  border-radius: 0 0 12px 12px;
+  margin-bottom: 2rem;
+
+  &:last-child {
+    margin-bottom: 5rem;
+  }
+
+  p {
+    padding: 0.875rem 2rem;
+    text-align: justify;
+  }
+}
+
+@media (max-width: 1440px) {
+  .incidentContainer {
+    height: 288px;
+  }
+}
