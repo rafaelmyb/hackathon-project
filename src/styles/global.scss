@@ -43,3 +43,14 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+#nprogress {
+  .bar {
+    background-color: var(--red) !important; 
+  }
+
+  .peg {
+    -webkit-box-shadow: 0 0 10px var(--red), 0 0 5px var(--red) !important;
+    box-shadow: 0 0 10px var(--red), 0 0 5px var(--red) !important;
+  }
+}

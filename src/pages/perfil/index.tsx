@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import { useState } from 'react';
+import { GetServerSideProps } from 'next';
+import { getSession } from 'next-auth/client';
 
 import { UpdateData } from '../../components/Modals/UpdateData';
 import { UpdatePassword } from '../../components/Modals/UpdatePassword';
@@ -137,7 +139,9 @@ export default function Perfil() {
               </div>
 
               <div className={styles.incidentUpdateDelete}>
-                <img src="/images/pencil.svg" alt="Editar"
+                <img
+                  src="/images/pencil.svg"
+                  alt="Editar"
                   onClick={() => setUpdateIncidentIsOpen(true)}
                 />
                 <img
@@ -165,3 +169,24 @@ export default function Perfil() {
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const session = await getSession({ req });
+
+  console.log(session);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      test: 'oi',
+    },
+  };
+};

@@ -3,7 +3,7 @@ import { ButtonHTMLAttributes } from 'react';
 import styles from './styles.module.scss';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant: 'primary' | 'secondary';
+  variant: 'primary' | 'secondary' | 'custom';
 }
 
 export function Button({ children, className, variant, ...rest }: ButtonProps) {
