@@ -51,7 +51,7 @@ export default function Registro() {
         birthday,
       });
 
-      if (response.status = 201) {
+      if (response.status === 201) {
         toast.success("Sua conta foi criada com sucesso. Agora, realize o login.");
       }
     } catch (e) {

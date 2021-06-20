@@ -9,10 +9,40 @@ import { DeleteIncident } from '../../components/Modals/DeleteIncident';
 import { NewCard } from '../../components/Modals/NewCard';
 import { NewIncident } from '../../components/Modals/NewIncident';
 import { UpdateIncident } from '../../components/Modals/UpdateIncident';
+import { Card } from '../../components/Card';
+import { Incident } from '../../components/Incident';
 
 import styles from './styles.module.scss';
+import { api } from '../../services/api';
 
-export default function Perfil() {
+interface CardProps {
+  bank: string;
+  flag: string;
+  is_used: boolean;
+  id: string;
+}
+
+interface IncidentProps {
+  id: string;
+  bank: string;
+  flag: string;
+  date: string;
+  place: string;
+  value: string;
+  comment: string;
+}
+
+interface PerfilProps {
+  cards: CardProps[];
+  incidents: IncidentProps[];
+  data: {
+    name: string;
+    email: string;
+    birthday: string;
+  };
+}
+
+export default function Perfil({ cards, data, incidents }: PerfilProps) {
   const [updateDataIsOpen, setUpdateDataIsOpen] = useState(false);
   const [updatePasswordIsOpen, setUpdatePasswordIsOpen] = useState(false);
   const [newCardIsOpen, setNewCardIsOpen] = useState(false);
@@ -20,10 +50,12 @@ export default function Perfil() {
   const [deleteIncidentIsOpen, setDeleteIncidentIsOpen] = useState(false);
   const [updateIncidentIsOpen, setUpdateIncidentIsOpen] = useState(false);
 
+  console.log(cards, data, incidents);
+
   return (
     <>
       <Head>
-        <title>Nome do usuário | Nome do projeto</title>
+        <title>{data.name} | Illuminate</title>
       </Head>
 
       <UpdateData
@@ -37,6 +69,7 @@ export default function Perfil() {
       <NewCard
         isOpen={newCardIsOpen}
         onRequestClose={() => setNewCardIsOpen(false)}
+        onCreateCard={() => console.log('foi!')}
       />
       <NewIncident
         isOpen={newIncidentIsOpen}
@@ -58,13 +91,16 @@ export default function Perfil() {
           <div className={styles.profile}>
             <h1>PERFIL</h1>
             <p>
-              <b>Nome: </b>Matheus Landuci da Silva
+              <b>Nome: </b>
+              {data.name}
             </p>
             <p>
-              <b>Email: </b>matheuslanduci@gmail.com
+              <b>Email: </b>
+              {data.email}
             </p>
             <p>
-              <b>Data de Nascimentos: </b>23/11/2002
+              <b>Data de Nascimento: </b>
+              {data.birthday}
             </p>
 
             <button type="button" onClick={() => setUpdateDataIsOpen(true)}>
@@ -86,35 +122,15 @@ export default function Perfil() {
             </div>
 
             <div className={styles.cardList}>
-              <div className={styles.card}>
-                <img
-                  src="/images/mastercard-card.svg"
-                  alt="Cartão Mastercard"
+              {cards.map(card => (
+                <Card
+                  key={card.id}
+                  card={{
+                    name: `Banco ${card.bank}`,
+                    is_used: card.is_used,
+                  }}
                 />
-                <p>
-                  Banco Santander <br />
-                  <span>Não foi utilizado</span>
-                </p>
-              </div>
-
-              <div className={styles.card}>
-                <img src="/images/visa-card.svg" alt="Cartão Visa" />
-                <p>
-                  Banco Caixa <br />
-                  <span>Já foi utilizado</span>
-                </p>
-              </div>
-
-              <div className={styles.card}>
-                <img
-                  src="/images/mastercard-card.svg"
-                  alt="Cartão Mastercard"
-                />
-                <p>
-                  Banco Santander <br />
-                  <span>Não foi utilizado</span>
-                </p>
-              </div>
+              ))}
             </div>
           </div>
         </section>
@@ -130,39 +146,25 @@ export default function Perfil() {
           </div>
 
           <div className={styles.incidentContainer}>
-            <div className={styles.incidentHeader}>
-              <div className={styles.incidentHeaderContent}>
-                <h3>INCIDENTE 1</h3>
-                <span>Cartão Santander (Bandeira MasterCard)</span>
-                <span>R$2.231,50</span>
-                <span>Online</span>
-              </div>
-
-              <div className={styles.incidentUpdateDelete}>
-                <img
-                  src="/images/pencil.svg"
-                  alt="Editar"
-                  onClick={() => setUpdateIncidentIsOpen(true)}
-                />
-                <img
-                  src="/images/trash.svg"
-                  alt="Deletar"
-                  onClick={() => setDeleteIncidentIsOpen(true)}
-                />
-              </div>
-            </div>
-
-            <div className={styles.incidentComment}>
-              <p>
-                <b>Comentário: </b>lorem ipsum dolor sit amet, consectetur
-                adipiscing elit. Nulla at augue ut mauris vehicula euismod vel
-                et sem. Integer quam lorem, bibendum vitae molestie in,
-                ultricies eget eros. Interdum et malesuada fames ac ante ipsum
-                primis in faucibus. Integer a bibendum ipsum. Donec varius magna
-                vel dui tincidunt, non interdum lacus maximus. Sed vitae elit
-                ex.
-              </p>
-            </div>
+            {incidents.map((incident, idx) => (
+              <Incident
+                key={incident.id}
+                incident={{
+                  comment: incident.comment,
+                  id: incident.id,
+                  index: idx,
+                  name: `Banco ${incident.bank} - Bandeira ${incident.flag}`,
+                  place: incident.place,
+                  value: incident.value,
+                  handleOpenUpdateIncident: () => {
+                    setUpdateIncidentIsOpen(true);
+                  },
+                  handleOpenDeleteIncident: () => {
+                    setDeleteIncidentIsOpen(true);
+                  },
+                }}
+              />
+            ))}
           </div>
         </section>
       </main>
@@ -173,8 +175,6 @@ export default function Perfil() {
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const session = await getSession({ req });
 
-  console.log(session);
-
   if (!session) {
     return {
       redirect: {
@@ -184,9 +184,28 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     };
   }
 
+  let cards: CardProps[] = [];
+
+  const response = await api.get(`/cards/${session.id}`);
+
+  cards = response.data.map(card => {
+    return {
+      bank: card.bank,
+      flag: card.flag,
+      is_used: card.is_used,
+      id: card.id,
+    };
+  });
+
   return {
     props: {
-      test: 'oi',
+      cards,
+      incidents: [],
+      data: {
+        name: '',
+        email: '',
+        birthday: '',
+      },
     },
   };
 };

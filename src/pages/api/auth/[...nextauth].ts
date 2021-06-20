@@ -7,6 +7,7 @@ interface SignInRequestProps {
   user?: {
     name: string;
     email: string;
+    id: string;
   };
   token?: string;
   message?: string;
@@ -42,6 +43,7 @@ export default NextAuth({
             email: response.data.user.email,
             name: response.data.user.name,
             token: response.data.token,
+            id: response.data.user.id
           };
         } catch (e) {
           if (e.response.data.message) {
@@ -56,12 +58,14 @@ export default NextAuth({
     async jwt(token, user) {
       if (user) {
         token.accessToken = user.token;
+        token.id = user.id;
       }
 
       return token;
     },
     async session(session, token) {
       session.accessToken = token.accessToken;
+      session.id = token.id;
 
       return session;
     },
