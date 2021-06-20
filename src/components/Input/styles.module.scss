@@ -1,0 +1,38 @@
+.formGroup {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;  
+
+  text-align: left;
+
+  .error {
+    color: #F51E38;
+    font-size: 0.9375rem;    
+    line-height: 23px;    
+  }
+
+  .input {
+    width: 100%;
+    height: 44px;
+    padding: 0.1rem 0 0 0.75rem;
+    font-size: 1.125rem;
+    line-height: 1.6875rem;
+
+    border-radius: 4px;
+    border: none;
+
+    &::placeholder {
+      color: var(--gray-300);
+      font-weight: 400;
+    }
+
+    &:focus::placeholder {
+      filter: brightness(1.5);
+    }
+
+    &:focus {
+      outline: 0;
+    }
+  }
+}

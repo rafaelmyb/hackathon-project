@@ -1,0 +1,28 @@
+.formGroup {
+  margin-bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+
+  color: #595959;
+  font-size: 20px;
+  font-weight: 600;
+
+  > div {    
+    display: flex;
+    align-items: center;
+
+    label {
+      display: flex;
+      align-items: center;
+
+      input {
+        margin-right: 8px;
+      }
+
+      & + label {
+        margin-left: 16px;
+      }
+    }
+  }
+}

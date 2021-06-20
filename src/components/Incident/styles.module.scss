@@ -1,0 +1,53 @@
+.incidentHeader {
+  background: #2B2B2B;
+  border-radius: 12px 12px 0 0;
+  height: 64px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .incidentHeaderContent {
+    width: 964px;
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+
+    font-weight: bold;
+
+    h3 {
+    font-size: 1.5rem;
+    }
+
+    span {
+      font-size: 1.125rem;
+      margin-left: 2rem;
+    }
+  }
+
+  .incidentUpdateDelete {
+    width: 60px;
+    margin-right: 1.875rem;
+
+    display: flex;
+    justify-content: space-between;
+
+    cursor: pointer;
+  }
+}
+
+.incidentComment {
+  height: 131px;
+  background: #333333;
+  border-radius: 0 0 12px 12px;
+  margin-bottom: 2rem;
+
+  &:last-child {
+    margin-bottom: 5rem;
+  }
+
+  p {
+    padding: 0.875rem 2rem;
+    text-align: justify;
+  }
+}
